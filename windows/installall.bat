@@ -3,6 +3,15 @@ setlocal enabledelayedexpansion
 
 echo ▶ Detecting Python...
 
+REM Debug: Show all available Python commands
+echo Debug: Checking available Python commands...
+for %%v in (python3.11 python3.12 python3.13 python3.10 python3.9 python3) do (
+    where %%v >nul 2>&1
+    if !errorlevel! equ 0 (
+        for /f "tokens=*" %%i in ('%%v --version 2^>^&1') do echo   Found: %%v -^> %%i
+    )
+)
+
 REM Find all available Python versions
 set AVAILABLE_COUNT=0
 for %%v in (python3.11 python3.12 python3.13 python3.10 python3.9 python3) do (
@@ -53,10 +62,20 @@ REM Set selected Python version
 call set PY_BIN=%%AVAILABLE_!CHOICE!%%
 
 :check_version
-REM Check Python version
-for /f "tokens=2" %%i in ('%PY_BIN% --version 2^>^&1') do set PY_VERSION=%%i
-echo ✔ Selected Python %PY_VERSION% at:
+REM Check Python version using sys module (most reliable)
+echo ✔ Selected Python at:
 where %PY_BIN%
+
+REM Get version using sys module
+for /f %%i in ('%PY_BIN% -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')" 2^>nul') do set PY_VERSION=%%i
+
+if "%PY_VERSION%"=="" (
+    echo ❌ Cannot determine Python version
+    echo   Try running: %PY_BIN% --version
+    exit /b 1
+)
+
+echo ✔ Detected Python version: %PY_VERSION%
 
 REM Check if version is 3.9+ (minimum requirement)
 %PY_BIN% -c "import sys; exit(0 if sys.version_info >= (3, 9) else 1)" >nul 2>&1
