@@ -1,0 +1,14 @@
+[MASTER]
+ignore=venv,.venv,build,dist,.mypy_cache,.pytest_cache,.idea,.git
+
+[MESSAGES CONTROL]
+disable=C0114,C0115,C0116  ; ignore missing module/class/function docstrings
+
+[REPORTS]
+score = no
+
+[TYPECHECK]
+generated-members=requests.*,numpy.*
+
+[FORMAT]
+max-line-length=120

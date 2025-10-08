@@ -1,0 +1,55 @@
+[tool.isort]
+# Стиль импортов
+profile = "black"            # даже если black не используешь, это удобный пресет стиля
+line_length = 120
+multi_line_output = 3
+include_trailing_comma = true
+use_parentheses = true
+force_grid_wrap = 0
+combine_as_imports = true
+# Группы/известные сторонние пакеты — чтобы Airflow/PySpark/Flask не скакали
+known_first_party = ["app", "src", "project"]
+known_third_party = ["airflow", "pendulum", "flask", "requests", "pyspark", "clickhouse_driver", "sqlalchemy"]
+default_section = "THIRDPARTY"
+skip = [".venv", "venv", "build", "dist", ".mypy_cache", ".pytest_cache", ".idea", ".git"]
+
+[tool.pyright]
+disable = [
+    "C0413",
+]
+pythonVersion = "3.11"
+typeCheckingMode = "basic"        # можно поднять до "strict", если готов к шуму
+reportMissingImports = true
+reportOptionalMemberAccess = true
+reportOptionalCall = true
+reportUnknownVariableType = false  # снизим шум на динамических местах
+reportUnknownMemberType = false
+exclude = [
+    ".venv",
+    "venv",
+    "build",
+    "dist",
+    ".mypy_cache",
+    ".pytest_cache",
+    ".idea",
+    ".git"
+]
+
+[tool.mypy]
+python_version = "3.11"
+ignore_missing_imports = true
+strict_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+no_implicit_optional = true
+disallow_untyped_defs = false      # можно включить true, если хотите жёстко
+exclude = '(\\.venv|venv|build|dist|\\.mypy_cache|\\.pytest_cache|\\.idea|\\.git)'
+
+
+[flake8]
+ignore = [
+
+]
+max-line-length = 100
+exclude = ['.git', '__pycache__', 'docs/', 'old/']
+max-line-length = 150

@@ -1,0 +1,11 @@
+skips:
+  - B311
+exclude_dirs:
+  - .venv
+  - venv
+  - build
+  - dist
+  - .mypy_cache
+  - .pytest_cache
+  - .idea
+  - .git

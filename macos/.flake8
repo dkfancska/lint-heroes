@@ -1,0 +1,5 @@
+[flake8]
+exclude = .venv,venv,build,dist,.mypy_cache,.pytest_cache,.idea,.git
+max-line-length = 120
+extend-ignore = E203
+select = B, E, F, W, B9

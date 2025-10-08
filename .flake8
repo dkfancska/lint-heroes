@@ -1,0 +1,27 @@
+[flake8]
+exclude =
+    .venv,
+    venv,
+    build,
+    dist,
+    .mypy_cache,
+    .pytest_cache,
+    .idea,
+    .git
+
+max-line-length = 150
+
+# Игнорируем спорные или избыточные проверки
+extend-ignore =
+    E501,
+    W503,
+    E402,
+    C114, C115, C116,
+    R903,
+    E302,
+    E211,
+    E502
+
+
+# Активируем нужные наборы проверок
+select = B, E, F, W, B9

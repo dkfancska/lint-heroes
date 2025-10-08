@@ -1,0 +1,83 @@
+[MASTER]
+ignore=venv,.venv,build,dist,.mypy_cache,.pytest_cache,.idea,.git
+extension-pkg-allow-list=
+load-plugins=
+fail-under=10.0
+
+[MESSAGES CONTROL]
+disable=
+    C0114,  ; missing-module-docstring
+    C0115,  ; missing-class-docstring
+    C0116,  ; missing-function-docstring
+    R0903,  ; too-few-public-methods
+    W1203,  ; logging-fstring-interpolation
+    R0801,   ; duplicate-code
+    C0413,   ;
+    C0411   ;
+
+[REPORTS]
+score = yes
+
+[FORMAT]
+max-line-length=150
+expected-line-ending-format=LF
+
+[BASIC]
+good-names=i,j,k,ex,_,id,db,ts,df
+argument-naming-style=snake_case
+attr-naming-style=snake_case
+variable-naming-style=snake_case
+function-naming-style=snake_case
+class-naming-style=PascalCase
+module-naming-style=snake_case
+
+[TYPECHECK]
+generated-members=requests.*,numpy.*,pyspark.*,airflow.*
+ignored-modules=
+    airflow,
+    airflow.configuration,
+    airflow.decorators,
+    airflow.operators,
+    airflow.operators.dummy,
+    airflow.models,
+    airflow.utils,
+    airflow.providers,
+    airflow.providers.cncf,
+    airflow.providers.cncf.kubernetes,
+    pyspark,
+    pyspark.sql,
+    pyspark.sql.functions,
+    pyspark.sql.types,
+    pyspark.sql.session,
+    pyspark.streaming,
+    pyspark.ml,
+    pyspark.ml.feature,
+    pyspark.ml.classification,
+    pyspark.ml.regression,
+    pyspark.ml.clustering,
+    pyspark.ml.linalg,
+    pyspark.ml.evaluation,
+    pyspark.ml.tuning,
+    pendulum
+
+[IMPORTS]
+known-third-party=
+    airflow,
+    pendulum,
+    flask,
+    requests,
+    pyspark,
+    clickhouse_driver,
+    sqlalchemy
+
+[DESIGN]
+max-args=10
+max-locals=30
+max-branches=20
+max-statements=80
+
+[SIMILARITIES]
+min-similarity-lines=12
+ignore-comments=yes
+ignore-docstrings=yes
+ignore-imports=yes
