@@ -96,13 +96,19 @@ pip install -U @(
     "mypy"
 )
 
-Write-Host "▶ Installing pyright via npm (if available)..." -ForegroundColor Green
-if (Get-Command npm -ErrorAction SilentlyContinue) {
-    Write-Host "▶ Installing pyright via npm..." -ForegroundColor Green
-    npm install -g pyright
+Write-Host "▶ Installing pyright (fast type checker)..." -ForegroundColor Green
+if (Get-Command pyright -ErrorAction SilentlyContinue) {
+    Write-Host "✔ pyright already installed" -ForegroundColor Green
 } else {
-    Write-Host "⚠ npm not found. Skipping pyright install." -ForegroundColor Yellow
-    Write-Host "  You can install it manually: npm install -g pyright" -ForegroundColor Yellow
+    Write-Host "▶ Installing pyright via pip..." -ForegroundColor Green
+    try {
+        pip install pyright
+        Write-Host "✔ pyright installed successfully" -ForegroundColor Green
+    } catch {
+        Write-Host "⚠ Failed to install pyright via pip." -ForegroundColor Yellow
+        Write-Host "  You can install it manually: pip install pyright" -ForegroundColor Yellow
+        Write-Host "  Or download from: https://github.com/microsoft/pyright/releases" -ForegroundColor Yellow
+    }
 }
 
 Write-Host "▶ Copying config files (won't overwrite existing)..." -ForegroundColor Green

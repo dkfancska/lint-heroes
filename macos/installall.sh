@@ -80,20 +80,21 @@ pip install -U \
   bandit \
   mypy
 
-# Try to install pyright (fast type checker). Prefer Homebrew, otherwise npm.
+# Install pyright (fast type checker) without Node.js
 install_pyright() {
   if command -v pyright >/dev/null 2>&1; then
     echo "✔ pyright already installed: $(pyright --version || true)"
     return 0
   fi
+  
+  # Try Homebrew first (no Node.js required)
   if command -v brew >/dev/null 2>&1; then
     echo "▶ Installing pyright via Homebrew..."
     brew install pyright || true
-  elif command -v npm >/dev/null 2>&1; then
-    echo "▶ Installing pyright via npm..."
-    npm install -g pyright || true
   else
-    echo "⚠ Neither brew nor npm found. Skipping pyright install."
+    echo "⚠ Homebrew not found. Skipping pyright install."
+    echo "  Install Homebrew: /bin/bash -c \"\$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\""
+    echo "  Then run: brew install pyright"
   fi
 }
 

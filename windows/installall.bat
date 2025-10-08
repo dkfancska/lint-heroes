@@ -90,14 +90,17 @@ pip install -U ^
   bandit ^
   mypy
 
-echo ▶ Installing pyright via npm (if available)...
-where npm >nul 2>&1
+echo ▶ Installing pyright (fast type checker)...
+where pyright >nul 2>&1
 if %errorlevel% equ 0 (
-    echo ▶ Installing pyright via npm...
-    npm install -g pyright
+    echo ✔ pyright already installed
 ) else (
-    echo ⚠ npm not found. Skipping pyright install.
-    echo   You can install it manually: npm install -g pyright
+    echo ▶ Installing pyright via pip...
+    pip install pyright || (
+        echo ⚠ Failed to install pyright via pip.
+        echo   You can install it manually: pip install pyright
+        echo   Or download from: https://github.com/microsoft/pyright/releases
+    )
 )
 
 echo ▶ Copying config files (won't overwrite existing)...

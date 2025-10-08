@@ -33,6 +33,12 @@ cd lint-heroes
 lint-heroes your_file.py
 ```
 
+### No Node.js Required
+```bash
+# Pyright installed via Homebrew (macOS) or pip (Windows)
+# No Node.js dependency needed!
+```
+
 ## 📋 Commands
 
 | Command | Description |

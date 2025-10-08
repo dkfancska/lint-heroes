@@ -5,6 +5,7 @@
 - Python 3.9+ (3.11+ recommended)
 - Package manager `uv` (optional)
 - Docker (for containerized workflows)
+- Homebrew (macOS, for pyright installation)
 
 ## Quick Installation
 
@@ -67,6 +68,46 @@ PY_BIN=python3.11 ./macos/installall.sh
 ```powershell
 .\windows\installall.ps1 -PythonPath python3.11
 ```
+
+## Pyright Installation
+
+### macOS/Linux
+
+Pyright is installed via Homebrew (no Node.js required):
+
+```bash
+# Install Homebrew (if not installed)
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# Pyright will be installed automatically via Homebrew
+```
+
+### Windows
+
+Pyright is installed via pip (no Node.js required):
+
+```bash
+# Pyright will be installed automatically via pip
+pip install pyright
+```
+
+### Manual Installation
+
+If automatic installation fails:
+
+**macOS/Linux:**
+```bash
+brew install pyright
+```
+
+**Windows:**
+```bash
+pip install pyright
+```
+
+**Alternative (all platforms):**
+- Download from [GitHub releases](https://github.com/microsoft/pyright/releases)
+- Extract and add to PATH
 
 ## Installation Methods
 
