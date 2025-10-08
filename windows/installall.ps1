@@ -63,17 +63,24 @@ if ($PythonPath -and (Get-Command $PythonPath -ErrorAction SilentlyContinue)) {
 
 # Check Python version
 try {
-    # Get Python version more reliably
-    $VersionOutput = & $PythonPath --version 2>&1
-    if ($VersionOutput -match 'Python (\d+\.\d+)') {
-        $PythonVersion = $matches[1]
-    } else {
-        # Fallback: try to get version from sys module
-        $PythonVersion = & $PythonPath -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')" 2>$null
+    $PythonLocation = (Get-Command $PythonPath).Source
+    Write-Host "✔ Selected Python at: $PythonLocation" -ForegroundColor Green
+    
+    # Get Python version using sys module (most reliable method)
+    $PythonVersion = & $PythonPath -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')" 2>$null
+    if (-not $PythonVersion) {
+        # Fallback: try --version output
+        $VersionOutput = & $PythonPath --version 2>&1
+        if ($VersionOutput -match 'Python (\d+\.\d+)') {
+            $PythonVersion = $matches[1]
+        } else {
+            Write-Host "❌ Cannot determine Python version" -ForegroundColor Red
+            Write-Host "  Version output: $VersionOutput" -ForegroundColor Red
+            exit 1
+        }
     }
     
-    $PythonLocation = (Get-Command $PythonPath).Source
-    Write-Host "✔ Selected Python $PythonVersion at: $PythonLocation" -ForegroundColor Green
+    Write-Host "✔ Detected Python version: $PythonVersion" -ForegroundColor Green
     
     # Check if version is 3.9+ (minimum requirement)
     $VersionCheck = & $PythonPath -c "import sys; print('OK' if sys.version_info >= (3, 9) else 'OLD')" 2>$null
@@ -81,6 +88,7 @@ try {
         Write-Host "❌ Python $PythonVersion is too old. Python 3.9+ is required." -ForegroundColor Red
         Write-Host "  Detected version: $PythonVersion" -ForegroundColor Red
         Write-Host "  Required: 3.9 or higher" -ForegroundColor Red
+        Write-Host "  Location: $PythonLocation" -ForegroundColor Red
         exit 1
     }
     
@@ -95,6 +103,7 @@ try {
 } catch {
     Write-Host "❌ Error checking Python version: $($_.Exception.Message)" -ForegroundColor Red
     Write-Host "  Please ensure Python is properly installed and accessible" -ForegroundColor Red
+    Write-Host "  Location: $PythonLocation" -ForegroundColor Red
     exit 1
 }
 
