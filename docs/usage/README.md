@@ -44,8 +44,29 @@ isort your_file.py
 
 ## Aliases Reference
 
+### macOS/Linux
 | Alias | Description |
 |-------|-------------|
+| `lint-heroes` | Run all linters |
+| `lint-install` | Install for current Python |
+| `lint-install-multiple` | Install for multiple Python versions |
+| `lint` | Short alias for lint-heroes |
+| `lint-multi` | Short alias for lint-install-multiple |
+
+### Windows
+
+#### Batch Files (Command Prompt)
+| Alias | Description |
+|-------|-------------|
+| `lint-heroes` | Run all linters |
+| `lint-install` | Install for current Python |
+| `lint-install-multiple` | Install for multiple Python versions |
+| `lint` | Short alias for lint-heroes |
+| `lint-multi` | Short alias for lint-install-multiple |
+
+#### PowerShell Functions
+| Function | Description |
+|----------|-------------|
 | `lint-heroes` | Run all linters |
 | `lint-install` | Install for current Python |
 | `lint-install-multiple` | Install for multiple Python versions |

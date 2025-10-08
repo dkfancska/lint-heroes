@@ -41,12 +41,19 @@ lint-heroes your_file.py
 
 ## 📋 Commands
 
+Available on all platforms (macOS, Linux, Windows):
+
 | Command | Description |
 |---------|-------------|
 | `lint-heroes` | Run all linters |
 | `lint-install` | Install for current Python |
 | `lint-multi` | Install for multiple Python versions |
 | `lint` | Short alias for lint-heroes |
+
+### Platform-Specific Details
+
+- **macOS/Linux**: Shell aliases in `~/.zshrc` or `~/.bashrc`
+- **Windows**: Batch files in `%USERPROFILE%\bin\` + PowerShell functions
 
 ## 📚 Documentation
 

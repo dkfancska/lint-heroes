@@ -120,6 +120,31 @@ The installation scripts will:
 - Create shell aliases
 - Set up configurations
 
+### Shell Aliases Created
+
+#### macOS/Linux
+- `lint-heroes` - run all linters
+- `lint-install` - reinstall linters for current Python
+- `lint-install-multiple` - install for multiple Python versions
+- `lint` - shortcut for lint-heroes
+- `lint-multi` - shortcut for lint-install-multiple
+
+#### Windows
+
+**Batch Files (Command Prompt):**
+- `lint-heroes.bat` - run all linters
+- `lint-install.bat` - reinstall linters for current Python
+- `lint-install-multiple.bat` - install for multiple Python versions
+- `lint.bat` - shortcut for lint-heroes
+- `lint-multi.bat` - shortcut for lint-install-multiple
+
+**PowerShell Functions:**
+- `lint-heroes` - run all linters
+- `lint-install` - reinstall linters for current Python
+- `lint-install-multiple` - install for multiple Python versions
+- `lint` - shortcut for lint-heroes
+- `lint-multi` - shortcut for lint-install-multiple
+
 ### Method 2: Manual Installation
 
 ```bash
@@ -156,20 +181,53 @@ source ~/.zshrc  # or ~/.bashrc
 ```
 
 **Windows:**
-```cmd
-# For batch files - add to PATH
-setx PATH "%PATH%;%USERPROFILE%\bin"
-```
 
-**PowerShell:**
+**Batch Files (Command Prompt):**
+- Created in: `%USERPROFILE%\bin\`
+- Added to PATH automatically
+- Restart Command Prompt to use
+
+**PowerShell Functions:**
+- Added to PowerShell profile: `$PROFILE`
+- Available immediately in new PowerShell sessions
+- To reload in current session:
 ```powershell
-Import-Module $PROFILE
+. $PROFILE
 ```
 
 ### Verify Installation
 
+**macOS/Linux:**
 ```bash
 # Check if aliases work
+lint-heroes --help
+
+# Check individual tools
+pylint --version
+flake8 --version
+bandit --version
+mypy --version
+pyright --version
+```
+
+**Windows:**
+
+**Command Prompt:**
+```cmd
+# Check if batch files work
+lint-heroes --help
+
+# Check individual tools
+pylint --version
+flake8 --version
+bandit --version
+mypy --version
+pyright --version
+```
+
+**PowerShell:**
+```powershell
+# Check if functions work
 lint-heroes --help
 
 # Check individual tools
@@ -210,6 +268,26 @@ grep "lint-heroes" ~/.zshrc
 
 # Reload profile
 source ~/.zshrc
+```
+
+**Windows:**
+
+**Command Prompt:**
+```cmd
+# Check if batch files exist
+dir "%USERPROFILE%\bin\lint*.bat"
+
+# Check PATH
+echo %PATH% | findstr "%USERPROFILE%\bin"
+```
+
+**PowerShell:**
+```powershell
+# Check if functions are in profile
+Get-Content $PROFILE | Select-String "lint-heroes"
+
+# Reload profile
+. $PROFILE
 ```
 
 ### Virtual Environment Issues
