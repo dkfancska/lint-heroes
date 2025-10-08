@@ -111,7 +111,7 @@ if not exist ".pylintrc" (
         copy "windows\.pylintrc" ".pylintrc"
     ) else (
         echo [MASTER] > .pylintrc
-        echo ignore=venv,.venv,build,dist,.mypy_cache,.pytest_cache,.idea,.git >> .pylintrc
+        echo ignore=venv,.venv,build,dist,.mypy_cache,.pytest_cache,.git >> .pylintrc
         echo. >> .pylintrc
         echo [MESSAGES CONTROL] >> .pylintrc
         echo disable=C0114,C0115,C0116  ; ignore missing module/class/function docstrings >> .pylintrc
@@ -132,7 +132,7 @@ if not exist ".flake8" (
         copy "windows\.flake8" ".flake8"
     ) else (
         echo [flake8] > .flake8
-        echo exclude = .venv,venv,build,dist,.mypy_cache,.pytest_cache,.idea,.git >> .flake8
+        echo exclude = .venv,venv,build,dist,.mypy_cache,.pytest_cache,.git >> .flake8
         echo max-line-length = 120 >> .flake8
         echo extend-ignore = E203 >> .flake8
         echo select = B, E, F, W, B9 >> .flake8

@@ -161,27 +161,6 @@ pylint %*
 deactivate
 ```
 
-## IDE Integration
-
-The project can be integrated with various IDEs and editors:
-- **macOS/Linux**: `.run/Lint All.run.xml`
-- **Windows Batch**: `.run/Lint All Windows.run.xml`
-- **Windows PowerShell**: `.run/Lint All PowerShell.run.xml`
-
-### VS Code
-
-**settings.json:**
-```json
-{
-    "python.defaultInterpreterPath": ".venv\\Scripts\\python.exe",
-    "python.terminal.activateEnvironment": true,
-    "python.linting.enabled": true,
-    "python.linting.pylintEnabled": true,
-    "python.linting.flake8Enabled": true,
-    "python.linting.banditEnabled": true,
-    "python.linting.mypyEnabled": true
-}
-```
 
 ## Docker Usage
 

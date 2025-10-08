@@ -27,7 +27,7 @@ combine_as_imports = true
 known_first_party = ["app", "src", "project"]
 known_third_party = ["airflow", "pendulum", "flask", "requests", "pyspark"]
 default_section = "THIRDPARTY"
-skip = [".venv", "venv", "build", "dist", ".mypy_cache", ".pytest_cache", ".idea", ".git"]
+skip = [".venv", "venv", "build", "dist", ".mypy_cache", ".pytest_cache", ".git"]
 
 [tool.pyright]
 # Pyright type checker configuration
@@ -48,7 +48,7 @@ warn_redundant_casts = true
 warn_unused_ignores = true
 no_implicit_optional = true
 disallow_untyped_defs = false
-exclude = '(\\.venv|venv|build|dist|\\.mypy_cache|\\.pytest_cache|\\.idea|\\.git)'
+exclude = '(\\.venv|venv|build|dist|\\.mypy_cache|\\.pytest_cache|\\.git)'
 
 [flake8]
 # Flake8 configuration
@@ -70,7 +70,6 @@ exclude_dirs:
   - dist
   - .mypy_cache
   - .pytest_cache
-  - .idea
   - .git
 ```
 
@@ -116,7 +115,7 @@ Generated automatically during installation:
 
 ```ini
 [MASTER]
-ignore=venv,.venv,build,dist,.mypy_cache,.pytest_cache,.idea,.git
+ignore=venv,.venv,build,dist,.mypy_cache,.pytest_cache,.git
 
 [MESSAGES CONTROL]
 disable=C0114,C0115,C0116  ; ignore missing module/class/function docstrings
@@ -137,7 +136,7 @@ Generated automatically during installation:
 
 ```ini
 [flake8]
-exclude = .venv,venv,build,dist,.mypy_cache,.pytest_cache,.idea,.git
+exclude = .venv,venv,build,dist,.mypy_cache,.pytest_cache,.git
 max-line-length = 120
 extend-ignore = E203
 select = B, E, F, W, B9
@@ -152,7 +151,7 @@ Create custom configuration files in your project root:
 **Custom .pylintrc:**
 ```ini
 [MASTER]
-ignore=venv,.venv,build,dist,.mypy_cache,.pytest_cache,.idea,.git,tests
+ignore=venv,.venv,build,dist,.mypy_cache,.pytest_cache,.git,tests
 
 [MESSAGES CONTROL]
 disable=C0114,C0115,C0116,C0103  ; ignore missing docstrings and invalid names
@@ -164,7 +163,7 @@ max-line-length=100
 **Custom .flake8:**
 ```ini
 [flake8]
-exclude = .venv,venv,build,dist,.mypy_cache,.pytest_cache,.idea,.git,tests
+exclude = .venv,venv,build,dist,.mypy_cache,.pytest_cache,.git,tests
 max-line-length = 100
 extend-ignore = E203,W503
 select = B, E, F, W, B9
@@ -225,33 +224,6 @@ warn_return_any = true
 warn_unused_configs = true
 ```
 
-## IDE Integration
-
-### VS Code Settings
-
-**settings.json:**
-```json
-{
-    "python.linting.pylintEnabled": true,
-    "python.linting.pylintArgs": ["--rcfile=.pylintrc"],
-    "python.linting.flake8Enabled": true,
-    "python.linting.flake8Args": ["--config=.flake8"],
-    "python.linting.banditEnabled": true,
-    "python.linting.mypyEnabled": true,
-    "python.linting.mypyArgs": ["--config-file=pyproject.toml"],
-    "python.formatting.provider": "black",
-    "python.sortImports.args": ["--profile", "black"]
-}
-```
-
-### IDE Settings
-
-1. Go to Settings → Tools → External Tools
-2. Add new tool with:
-   - Name: Lint Heroes
-   - Program: `lint-heroes`
-   - Arguments: `$FilePath$`
-   - Working directory: `$ProjectFileDir$`
 
 ## Configuration Validation
 

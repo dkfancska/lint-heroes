@@ -121,7 +121,7 @@ if (-not (Test-Path ".pylintrc")) {
         # Create default .pylintrc if not found
         @"
 [MASTER]
-ignore=venv,.venv,build,dist,.mypy_cache,.pytest_cache,.idea,.git
+ignore=venv,.venv,build,dist,.mypy_cache,.pytest_cache,.git
 
 [MESSAGES CONTROL]
 disable=C0114,C0115,C0116  ; ignore missing module/class/function docstrings
@@ -145,7 +145,7 @@ if (-not (Test-Path ".flake8")) {
         # Create default .flake8 if not found
         @"
 [flake8]
-exclude = .venv,venv,build,dist,.mypy_cache,.pytest_cache,.idea,.git
+exclude = .venv,venv,build,dist,.mypy_cache,.pytest_cache,.git
 max-line-length = 120
 extend-ignore = E203
 select = B, E, F, W, B9

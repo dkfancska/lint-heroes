@@ -11,7 +11,7 @@ combine_as_imports = true
 known_first_party = ["app", "src", "project"]
 known_third_party = ["airflow", "pendulum", "flask", "requests", "pyspark", "clickhouse_driver", "sqlalchemy"]
 default_section = "THIRDPARTY"
-skip = [".venv", "venv", "build", "dist", ".mypy_cache", ".pytest_cache", ".idea", ".git"]
+skip = [".venv", "venv", "build", "dist", ".mypy_cache", ".pytest_cache", ".git"]
 
 [tool.pyright]
 disable = [
@@ -31,7 +31,6 @@ exclude = [
     "dist",
     ".mypy_cache",
     ".pytest_cache",
-    ".idea",
     ".git"
 ]
 
@@ -43,7 +42,7 @@ warn_redundant_casts = true
 warn_unused_ignores = true
 no_implicit_optional = true
 disallow_untyped_defs = false      # можно включить true, если хотите жёстко
-exclude = '(\\.venv|venv|build|dist|\\.mypy_cache|\\.pytest_cache|\\.idea|\\.git)'
+exclude = '(\\.venv|venv|build|dist|\\.mypy_cache|\\.pytest_cache|\\.git)'
 
 
 [flake8]
