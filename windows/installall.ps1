@@ -297,29 +297,4 @@ if (`$status -ne 0) {
 exit `$status
 "@ | Out-File -FilePath "lint_all.ps1" -Encoding UTF8
 
-Write-Host "▶ Adding PyCharm Run configuration for Windows..." -ForegroundColor Green
-if (-not (Test-Path ".run")) {
-    New-Item -ItemType Directory -Path ".run" | Out-Null
-}
-
-@"
-<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Lint All PowerShell" type="PowerShellConfigurationType">
-    <option name="SCRIPT_PATH" value="$PROJECT_DIR$/lint_all.ps1" />
-    <option name="SCRIPT_OPTIONS" value="" />
-    <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
-    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-    <option name="EXECUTE_IN_TERMINAL" value="true" />
-    <method v="2" />
-  </configuration>
-</component>
-"@ | Out-File -FilePath ".run\Lint All PowerShell.run.xml" -Encoding UTF8
-
-Write-Host ""
-Write-Host "▶ Done." -ForegroundColor Green
-Write-Host ""
-Write-Host "Next steps:" -ForegroundColor Yellow
-Write-Host "  1) Run installall.ps1" -ForegroundColor White
-Write-Host "  2) In PyCharm: select Run configuration 'Lint All PowerShell' and Run" -ForegroundColor White
-Write-Host "  3) To lint a single file: run '.\lint_all.ps1 path\to\file.py' from PowerShell" -ForegroundColor White
-Write-Host "     or edit Run configuration and add '%FilePath%' to SCRIPT_OPTIONS." -ForegroundColor White
+Write-Host "✔ Installation completed successfully!" -ForegroundColor Green

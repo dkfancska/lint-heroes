@@ -17,21 +17,7 @@ Cross-platform Python linting setup with interactive version selection. Supports
 
 ## 🚀 Quick Start
 
-### macOS/Linux
-```bash
-git clone https://github.com/dkfancska/lint-heroes.git
-cd lint-heroes
-./macos/installall.sh
-lint-heroes your_file.py
-```
-
-### Windows
-```powershell
-git clone https://github.com/dkfancska/lint-heroes.git
-cd lint-heroes
-.\windows\installall.ps1
-lint-heroes your_file.py
-```
+See [QUICK_START.md](QUICK_START.md) for detailed installation instructions.
 
 ### No Node.js Required
 ```bash
@@ -61,7 +47,6 @@ Available on all platforms (macOS, Linux, Windows):
 - **[Usage Guide](docs/usage/README.md)** - How to use linting tools
 - **[Configuration](docs/configuration/README.md)** - Tool configurations
 - **[Troubleshooting](docs/troubleshooting/README.md)** - Common issues and solutions
-- **[Windows Setup](windows/WINDOWS_SETUP.md)** - Windows-specific guide
 - **[macOS/Linux Guide](macos/README.md)** - Unix-specific guide
 
 ## 🛠️ Tools Included
@@ -81,9 +66,6 @@ lint-heroes
 
 # Lint specific file
 lint-heroes src/main.py
-
-# Lint specific directory
-lint-heroes src/
 
 # Install for multiple Python versions
 lint-multi

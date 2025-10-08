@@ -285,28 +285,5 @@ echo.
 echo exit /b %%status%%
 ) > lint_all.bat
 
-echo ▶ Adding PyCharm Run configuration for Windows...
-if not exist ".run" mkdir .run
-(
-echo ^<component name="ProjectRunConfigurationManager"^>
-echo   ^<configuration default="false" name="Lint All Windows" type="BatchConfigurationType"^>
-echo     ^<option name="SCRIPT_PATH" value="$PROJECT_DIR$/lint_all.bat" /^>
-echo     ^<option name="SCRIPT_OPTIONS" value="" /^>
-echo     ^<option name="INDEPENDENT_SCRIPT_PATH" value="true" /^>
-echo     ^<option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" /^>
-echo     ^<option name="EXECUTE_IN_TERMINAL" value="true" /^>
-echo     ^<method v="2" /^>
-echo   ^</configuration^>
-echo ^</component^>
-) > ".run\Lint All Windows.run.xml"
-
-echo.
-echo ▶ Done.
-echo.
-echo Next steps:
-echo   1^) Run installall.bat
-echo   2^) In PyCharm: select Run configuration 'Lint All Windows' and Run
-echo   3^) To lint a single file: run 'lint_all.bat path\to\file.py' from cmd
-echo      or edit Run configuration and add '%FilePath%' to SCRIPT_OPTIONS.
-echo.
+echo ✔ Installation completed successfully!
 pause

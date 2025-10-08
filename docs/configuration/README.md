@@ -244,7 +244,7 @@ warn_unused_configs = true
 }
 ```
 
-### PyCharm Settings
+### IDE Settings
 
 1. Go to Settings → Tools → External Tools
 2. Add new tool with:

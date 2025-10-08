@@ -288,28 +288,4 @@ EOF
 
 chmod +x lint_all.sh
 
-echo "▶ Adding shared Run configuration for PyCharm (.run/Lint All.run.xml)..."
-mkdir -p .run
-cat > ".run/Lint All.run.xml" <<'EOF'
-<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Lint All" type="ShConfigurationType">
-    <option name="SCRIPT_PATH" value="$PROJECT_DIR$/lint_all.sh" />
-    <option name="SCRIPT_OPTIONS" value="" />
-    <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
-    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-    <option name="EXECUTE_IN_TERMINAL" value="true" />
-    <method v="2" />
-  </configuration>
-</component>
-EOF
-
-cat <<'EOF'
-▶ Done.
-
-Next steps:
-  1) chmod +x setup_mac_linting.sh
-  2) ./setup_mac_linting.sh
-  3) In PyCharm: select Run configuration 'Lint All' and Run (or assign a shortcut).
-  4) To lint a single file: run 'lint_all.sh path/to/file.py' from terminal
-     or edit Run configuration and add '$FilePath$' to SCRIPT_OPTIONS.
-EOF
+echo "✔ Installation completed successfully!"

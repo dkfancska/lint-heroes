@@ -163,9 +163,7 @@ deactivate
 
 ## IDE Integration
 
-### PyCharm
-
-The project includes PyCharm run configurations:
+The project can be integrated with various IDEs and editors:
 - **macOS/Linux**: `.run/Lint All.run.xml`
 - **Windows Batch**: `.run/Lint All Windows.run.xml`
 - **Windows PowerShell**: `.run/Lint All PowerShell.run.xml`
