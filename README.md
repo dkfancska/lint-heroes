@@ -17,7 +17,20 @@ Cross-platform Python linting setup with interactive version selection. Supports
 
 ## 🚀 Quick Start
 
-See [QUICK_START.md](QUICK_START.md) for detailed installation instructions.
+### Windows
+```cmd
+# Download the repository and run:
+windows\install_universal.bat
+```
+
+### macOS/Linux
+```bash
+# Download the repository and run:
+./macos/installall.sh
+```
+
+### Detailed Installation Guide
+See [INSTALL.md](INSTALL.md) for comprehensive installation instructions, troubleshooting, and manual setup.
 
 ### No Node.js Required
 ```bash

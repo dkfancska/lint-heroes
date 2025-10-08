@@ -1,3 +1,15 @@
+# Lint-Heroes Dependencies
+# Core linting tools
+pyright>=1.0.0
+
+# Additional useful tools
+black>=23.0.0
+autopep8>=2.0.0
+
+# Optional: for better type checking
+types-requests>=2.0.0
+types-PyYAML>=6.0.0
+
 aiobotocore==2.24.2
 aiohappyeyeballs==2.6.1
 aiohttp==3.12.15

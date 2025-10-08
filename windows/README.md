@@ -4,26 +4,26 @@
 
 ## Файлы
 
-- `installall.bat` - Скрипт установки (Batch)
-- `installall.ps1` - Скрипт установки (PowerShell)
-- `lint_all.bat` - Скрипт запуска линтеров (Batch)
-- `lint_all.ps1` - Скрипт запуска линтеров (PowerShell)
-- `WINDOWS_SETUP.md` - Подробное руководство для Windows
+### Установщик
+- `install_universal.bat` - ✅ Универсальный установщик для любой Windows машины
+
+### Скрипты линтинга
+- `lint_all.bat` - ✅ Скрипт запуска линтеров (Batch)
+- `lint_all.ps1` - ✅ Скрипт запуска линтеров (PowerShell)
+
+### Конфигурация
+- `bandit.yaml` - ✅ Конфигурация bandit
+- `pyproject.toml` - ✅ Конфигурация проекта
+- `pyrightconfig.json` - ✅ Конфигурация pyright
 
 ## Использование
 
 ### Установка
 
-**Batch файл (простой):**
+**Универсальный установщик:**
 ```cmd
 # Из корневой папки проекта
-windows\installall.bat
-```
-
-**PowerShell (рекомендуется):**
-```powershell
-# Из корневой папки проекта
-.\windows\installall.ps1
+windows\install_universal.bat
 ```
 
 ### Запуск линтеров
@@ -92,10 +92,10 @@ Import-Module $PROFILE
 
 ## Требования
 
-- Python 3.11+
+- Python 3.9+ (рекомендуется 3.11+)
 - pip
-- Node.js и npm (для pyright)
 - PowerShell 5.0+ (для PowerShell скриптов)
+- Node.js и npm (опционально, для pyright)
 
 ## Что устанавливается
 
@@ -109,10 +109,12 @@ Import-Module $PROFILE
 ## Конфигурация
 
 Скрипты автоматически создают конфигурационные файлы:
-- `.pylintrc`
-- `.flake8`
-- `pyproject.toml` (если не существует)
+- `.pylintrc` - конфигурация pylint
+- `.flake8` - конфигурация flake8
+- `bandit.yaml` - конфигурация bandit
+- `pyrightconfig.json` - конфигурация pyright
+- `pyproject.toml` - общая конфигурация проекта
 
 ## Подробное руководство
 
-См. `WINDOWS_SETUP.md` для детальных инструкций по установке и решению проблем.
+См. основной `README.md` в корне проекта для детальных инструкций по установке и решению проблем.
