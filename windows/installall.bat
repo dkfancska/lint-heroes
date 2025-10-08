@@ -62,14 +62,18 @@ REM Check if version is 3.9+ (minimum requirement)
 %PY_BIN% -c "import sys; exit(0 if sys.version_info >= (3, 9) else 1)" >nul 2>&1
 if %errorlevel% neq 0 (
     echo ❌ Python %PY_VERSION% is too old. Python 3.9+ is required.
+    echo   Detected version: %PY_VERSION%
+    echo   Required: 3.9 or higher
     exit /b 1
 )
 
-REM Warn about older versions
+REM Warn about older versions (but don't fail)
 %PY_BIN% -c "import sys; exit(0 if sys.version_info >= (3, 11) else 1)" >nul 2>&1
 if %errorlevel% neq 0 (
     echo ⚠ Warning: Python %PY_VERSION% found, but Python 3.11+ is recommended for best compatibility
     echo   Consider using a newer Python version if available
+) else (
+    echo ✔ Python version %PY_VERSION% is recommended
 )
 
 echo ▶ Creating virtualenv .venv (if missing)...

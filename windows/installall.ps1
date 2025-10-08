@@ -5,6 +5,15 @@ param(
 
 Write-Host "▶ Detecting Python..." -ForegroundColor Green
 
+# Debug: Show all available Python commands
+Write-Host "Debug: Checking available Python commands..." -ForegroundColor Cyan
+foreach ($version in $PythonVersions) {
+    if (Get-Command $version -ErrorAction SilentlyContinue) {
+        $ver = & $version --version 2>&1
+        Write-Host "  Found: $version -> $ver" -ForegroundColor Cyan
+    }
+}
+
 # Find all available Python versions
 $PythonVersions = @("python3.11", "python3.12", "python3.13", "python3.10", "python3.9", "python3", "python")
 $AvailablePythons = @()
@@ -54,7 +63,15 @@ if ($PythonPath -and (Get-Command $PythonPath -ErrorAction SilentlyContinue)) {
 
 # Check Python version
 try {
-    $PythonVersion = & $PythonPath --version 2>&1 | Select-String -Pattern '\d+\.\d+' | ForEach-Object { $_.Matches[0].Value }
+    # Get Python version more reliably
+    $VersionOutput = & $PythonPath --version 2>&1
+    if ($VersionOutput -match 'Python (\d+\.\d+)') {
+        $PythonVersion = $matches[1]
+    } else {
+        # Fallback: try to get version from sys module
+        $PythonVersion = & $PythonPath -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')" 2>$null
+    }
+    
     $PythonLocation = (Get-Command $PythonPath).Source
     Write-Host "✔ Selected Python $PythonVersion at: $PythonLocation" -ForegroundColor Green
     
@@ -62,17 +79,22 @@ try {
     $VersionCheck = & $PythonPath -c "import sys; print('OK' if sys.version_info >= (3, 9) else 'OLD')" 2>$null
     if ($VersionCheck -ne "OK") {
         Write-Host "❌ Python $PythonVersion is too old. Python 3.9+ is required." -ForegroundColor Red
+        Write-Host "  Detected version: $PythonVersion" -ForegroundColor Red
+        Write-Host "  Required: 3.9 or higher" -ForegroundColor Red
         exit 1
     }
     
-    # Warn about older versions
+    # Warn about older versions (but don't fail)
     $VersionCheck = & $PythonPath -c "import sys; print('OK' if sys.version_info >= (3, 11) else 'OLD')" 2>$null
     if ($VersionCheck -ne "OK") {
         Write-Host "⚠ Warning: Python $PythonVersion found, but Python 3.11+ is recommended for best compatibility" -ForegroundColor Yellow
         Write-Host "  Consider using a newer Python version if available" -ForegroundColor Yellow
+    } else {
+        Write-Host "✔ Python version $PythonVersion is recommended" -ForegroundColor Green
     }
 } catch {
-    Write-Host "Error checking Python version: $($_.Exception.Message)" -ForegroundColor Red
+    Write-Host "❌ Error checking Python version: $($_.Exception.Message)" -ForegroundColor Red
+    Write-Host "  Please ensure Python is properly installed and accessible" -ForegroundColor Red
     exit 1
 }
 
